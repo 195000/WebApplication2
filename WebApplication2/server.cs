@@ -135,20 +135,20 @@ namespace WebApplication2
 
                 switch (tableName)
                 {
-                    case "Users":
-                        command = new SqlCommand("INSERT INTO Users (user_name) VALUES (@0)", conn);
+                    case "Urzytkownicy":
+                        command = new SqlCommand("INSERT INTO Urzytkownicy (nazwa_urzytkownika) VALUES (@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         break;
 
-                    case "Products":
-                        command = new SqlCommand("INSERT INTO Products (product_name, price) VALUES (@0, @1)", conn);
+                    case "Produkty":
+                        command = new SqlCommand("INSERT INTO Produkty (nazwa_produktu, cena) VALUES (@0, @1)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         command.Parameters.Add(new SqlParameter("1", par2));
 
                         break;
 
-                    case "Cart":
-                        command = new SqlCommand("INSERT INTO Cart (user_id, product_id) VALUES (@0, @1)", conn);
+                    case "Grupa":
+                        command = new SqlCommand("INSERT INTO Grupa (id_urzytkownika, id_produktu) VALUES (@0, @1)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         command.Parameters.Add(new SqlParameter("1", par2));
                         break;
@@ -196,19 +196,19 @@ namespace WebApplication2
 
                 switch (tableName)
                 {
-                    case "Users":
-                        command = new SqlCommand("DELETE FROM Users WHERE id=(@0)", conn);
+                    case "Urzytkownicy":
+                        command = new SqlCommand("DELETE FROM Urzytkownicy WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         break;
 
-                    case "Products":
-                        command = new SqlCommand("DELETE FROM Products WHERE id=(@0)", conn);
+                    case "Produkty":
+                        command = new SqlCommand("DELETE FROM Produkty WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
 
                         break;
 
-                    case "Cart":
-                        command = new SqlCommand("DELETE FROM Cart WHERE id=(@0)", conn);
+                    case "Grupa":
+                        command = new SqlCommand("DELETE FROM Grupa WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         break;
                 }
@@ -256,22 +256,22 @@ namespace WebApplication2
 
                 switch (tableName)
                 {
-                    case "Users":
-                        command = new SqlCommand("UPDATE Users SET user_name=(@1) WHERE id=(@0)", conn);
+                    case "Urzytkownicy":
+                        command = new SqlCommand("UPDATE Urzytkownicy SET nazwa_urzytkownika=(@1) WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         command.Parameters.Add(new SqlParameter("1", par2));
                         break;
 
-                    case "Products":
-                        command = new SqlCommand("UPDATE Products SET product_name=(@1), price=(@2) WHERE id=(@0)", conn);
+                    case "Produkty":
+                        command = new SqlCommand("UPDATE Produkty SET nazwa_produktu=(@1), cena=(@2) WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         command.Parameters.Add(new SqlParameter("1", par2));
                         command.Parameters.Add(new SqlParameter("2", par3));
 
                         break;
 
-                    case "Cart":
-                        command = new SqlCommand("UPDATE Cart SET user_id=(@1), product_id(@2) WHERE id=(@0)", conn);
+                    case "Grupa":
+                        command = new SqlCommand("UPDATE Grupa SET id_urzytkownika=(@1), id_produktu(@2) WHERE id=(@0)", conn);
                         command.Parameters.Add(new SqlParameter("0", par1));
                         command.Parameters.Add(new SqlParameter("1", par2));
                         command.Parameters.Add(new SqlParameter("2", par3));
@@ -288,14 +288,14 @@ namespace WebApplication2
                 }
                 catch (Exception e)
                 {
-                    Clients.Client(userID).clientmess("Error during updating data into Database!");
+                    Clients.Client(userID).clientmess("Error");
                     refreshFlag = true;
 
                 }
 
                 if (result < 0)
                 {
-                    Clients.Client(userID).clientmess("Error during updating data into Database!");
+                    Clients.Client(userID).clientmess("Error");
                     refreshFlag = true;
                 }
 

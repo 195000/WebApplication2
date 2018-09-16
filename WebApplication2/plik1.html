@@ -1,26 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
 	<title>PS2 Project</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		  crossorigin="anonymous">
 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-
 </head>
-
 <body>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<h1>PS2 Final Project</h1>
+				<h1>PS2 Project</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -34,10 +28,10 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="in1" placeholder="kol1">
+				<input type="text" class="form-control" id="in1" placeholder="pierwsza">
 			</div>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="in2" placeholder="kol2">
+				<input type="text" class="form-control" id="in2" placeholder="druga">
 			</div>
 			<div class="col-sm-4">
 				<button class="btn btn-success" id="insert_button">Dodaj</button>
@@ -45,21 +39,21 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="remove" placeholder="Podaj ID wiersza do usunięcia">
+				<input type="text" class="form-control" id="usun" placeholder="id">
 			</div>
 			<div class="col-sm-4">
-				<button class="btn btn-danger" id="remove_button">Usuń</button>
+				<button class="btn btn-danger" id="usun_button">Usuń</button>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-1">
-				<input type="text" class="form-control" id="id" placeholder="ID">
+				<input type="text" class="form-control" id="id" placeholder="id">
 			</div>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="edit1" placeholder="kol1">
+				<input type="text" class="form-control" id="edit1" placeholder="pierwsza">
 			</div>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="edit2" placeholder="kol2">
+				<input type="text" class="form-control" id="edit2" placeholder="druga">
 			</div>
 			<div class="col-sm-4">
 				<button class="btn btn-primary" id="edit_button">Edytuj</button>
@@ -115,8 +109,8 @@
 				var par2 = $('#in2').val();
 				chat.server.insertRow($.connection.hub.id, Cookies.get('database'), par1, par2);
 			});
-			$('#remove_button').click(function () {
-				var par1 = $('#remove').val();
+			$('#usun_button').click(function () {
+				var par1 = $('#usun').val();
 				chat.server.deleteRow($.connection.hub.id, Cookies.get('database'), par1);
 			});
 
