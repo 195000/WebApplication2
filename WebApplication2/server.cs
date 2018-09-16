@@ -14,7 +14,7 @@ namespace WebApplication2
     public class ChatHub : Hub
     {
 
-        private static List<object[]> getQuery(string message)
+        private static List<object[]> getQuery(string mess)
         {
 
 
@@ -26,7 +26,8 @@ namespace WebApplication2
 
                 conn.Open();
 
-                SqlCommand command = new SqlCommand(message, conn);
+                SqlCommand command = new SqlCommand(mess, conn);
+                SqlCommand command = new SqlCommand(mess, conn);
 
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
@@ -58,22 +59,22 @@ namespace WebApplication2
             return base.OnConnected();
         }
 
-        public void getTablesList(string message, string conID)
+        public void getTablesList(string mess, string conID)
         {
-            List<object[]> response = getQuery(message);
+            List<object[]> response = getQuery(mess);
             Clients.Client(conID).getTables(response);
         }
 
-        public void ReadSingleTable(string message, string conID)
+        public void ReadSingleTable(string mess, string conID)
         {
-            List<object[]> response = getQuery(message);
+            List<object[]> response = getQuery(mess);
             Clients.Client(conID).singleTableResponse(response);
         }
 
 
-        public void sendQuery(string message, string conID)
+        public void sendQuery(string mess, string conID)
         {
-            List<object[]> response = getQuery(message);
+            List<object[]> response = getQuery(mess);
             Clients.Client(conID).getTables(response);
         }
 
@@ -111,13 +112,13 @@ namespace WebApplication2
 
                     result = command.ExecuteNonQuery();
 
-                    Clients.Client(userID).clientMessage("Error!");
+                    Clients.Client(userID).clientmess("Error!");
                 }
             }
         }
 
 
-        public void insertRow(string userID, string tableName, string param1, string param2 = null)
+        public void insertRow(string userID, string tableName, string par1, string par2 = null)
         {
 
             bool refreshFlag = false;
@@ -137,20 +138,20 @@ namespace WebApplication2
                 {
                     case "Users":
                         command = new SqlCommand("INSERT INTO Users (user_name) VALUES (@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
+                        command.Parameters.Add(new SqlParameter("0", par1));
                         break;
 
                     case "Products":
                         command = new SqlCommand("INSERT INTO Products (product_name, price) VALUES (@0, @1)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
-                        command.Parameters.Add(new SqlParameter("1", param2));
+                        command.Parameters.Add(new SqlParameter("0", par1));
+                        command.Parameters.Add(new SqlParameter("1", par2));
 
                         break;
 
                     case "Cart":
                         command = new SqlCommand("INSERT INTO Cart (user_id, product_id) VALUES (@0, @1)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
-                        command.Parameters.Add(new SqlParameter("1", param2));
+                        command.Parameters.Add(new SqlParameter("0", par1));
+                        command.Parameters.Add(new SqlParameter("1", par2));
                         break;
                 }
 
@@ -158,19 +159,19 @@ namespace WebApplication2
 
                 try
                 {
-                    if (param1 == "")
+                    if (par1 == "")
                         throw new Exception();
                     result = command.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    Clients.Client(userID).clientMessage("Error inserting  data into Database!");
+                    Clients.Client(userID).clientmess("Error inserting  data into Database!");
                     refreshFlag = true;
                 }
 
                 if (result < 0)
                 {
-                    Clients.Client(userID).clientMessage("Error inserting data into Database!");
+                    Clients.Client(userID).clientmess("Error inserting data into Database!");
                     refreshFlag = true;
                 }
             }
@@ -179,7 +180,7 @@ namespace WebApplication2
                 db_OnChange();
         }
 
-        public void deleteRow(string userID, string tableName, string param1 = null)
+        public void deleteRow(string userID, string tableName, string par1 = null)
         {
             bool refreshFlag = false;
 
@@ -198,18 +199,18 @@ namespace WebApplication2
                 {
                     case "Users":
                         command = new SqlCommand("DELETE FROM Users WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
+                        command.Parameters.Add(new SqlParameter("0", par1));
                         break;
 
                     case "Products":
                         command = new SqlCommand("DELETE FROM Products WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
+                        command.Parameters.Add(new SqlParameter("0", par1));
 
                         break;
 
                     case "Cart":
                         command = new SqlCommand("DELETE FROM Cart WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
+                        command.Parameters.Add(new SqlParameter("0", par1));
                         break;
                 }
 
@@ -217,20 +218,20 @@ namespace WebApplication2
 
                 try
                 {
-                    if (param1 == "")
+                    if (par1 == "")
                         throw new Exception();
                     result = command.ExecuteNonQuery();
 
                 }
                 catch (Exception e)
                 {
-                    Clients.Client(userID).clientMessage("Error during deleting data into Database!");
+                    Clients.Client(userID).clientmess("Error during deleting data into Database!");
                     refreshFlag = true;
                 }
 
                 if (result < 0)
                 {
-                    Clients.Client(userID).clientMessage("Error during deleting data into Database!");
+                    Clients.Client(userID).clientmess("Error during deleting data into Database!");
                     refreshFlag = true;
                 }
             }
@@ -239,7 +240,7 @@ namespace WebApplication2
                 db_OnChange();
         }
 
-        public void editRow(string userID, string tableName, string param1 = null, string param2 = null, string param3 = null)
+        public void editRow(string userID, string tableName, string par1 = null, string par2 = null, string par3 = null)
         {
             bool refreshFlag = false;
 
@@ -258,23 +259,23 @@ namespace WebApplication2
                 {
                     case "Users":
                         command = new SqlCommand("UPDATE Users SET user_name=(@1) WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
-                        command.Parameters.Add(new SqlParameter("1", param2));
+                        command.Parameters.Add(new SqlParameter("0", par1));
+                        command.Parameters.Add(new SqlParameter("1", par2));
                         break;
 
                     case "Products":
                         command = new SqlCommand("UPDATE Products SET product_name=(@1), price=(@2) WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
-                        command.Parameters.Add(new SqlParameter("1", param2));
-                        command.Parameters.Add(new SqlParameter("2", param3));
+                        command.Parameters.Add(new SqlParameter("0", par1));
+                        command.Parameters.Add(new SqlParameter("1", par2));
+                        command.Parameters.Add(new SqlParameter("2", par3));
 
                         break;
 
                     case "Cart":
                         command = new SqlCommand("UPDATE Cart SET user_id=(@1), product_id(@2) WHERE id=(@0)", conn);
-                        command.Parameters.Add(new SqlParameter("0", param1));
-                        command.Parameters.Add(new SqlParameter("1", param2));
-                        command.Parameters.Add(new SqlParameter("2", param3));
+                        command.Parameters.Add(new SqlParameter("0", par1));
+                        command.Parameters.Add(new SqlParameter("1", par2));
+                        command.Parameters.Add(new SqlParameter("2", par3));
                         break;
                 }
 
@@ -282,20 +283,20 @@ namespace WebApplication2
 
                 try
                 {
-                    if (param1 == "" || param2 == "")
+                    if (par1 == "" || par2 == "")
                         throw new Exception();
                     result = command.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    Clients.Client(userID).clientMessage("Error during updating data into Database!");
+                    Clients.Client(userID).clientmess("Error during updating data into Database!");
                     refreshFlag = true;
 
                 }
 
                 if (result < 0)
                 {
-                    Clients.Client(userID).clientMessage("Error during updating data into Database!");
+                    Clients.Client(userID).clientmess("Error during updating data into Database!");
                     refreshFlag = true;
                 }
 
