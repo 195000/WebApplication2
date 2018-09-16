@@ -22,11 +22,10 @@ namespace WebApplication2
 
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=admin123;PASSWORD=Nowehaslo321;";
+                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=michal7018;PASSWORD=Michal7011;";
 
                 conn.Open();
 
-                SqlCommand command = new SqlCommand(mess, conn);
                 SqlCommand command = new SqlCommand(mess, conn);
 
                 if (conn.State == ConnectionState.Closed)
@@ -91,7 +90,7 @@ namespace WebApplication2
 
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=admin123;PASSWORD=Nowehaslo321;";
+                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=michal7018;PASSWORD=Michal7011;";
 
                 conn.Open();
 
@@ -125,7 +124,7 @@ namespace WebApplication2
 
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=admin123;PASSWORD=Nowehaslo321;";
+                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=michal7018;PASSWORD=Michal7011;";
 
                 conn.Open();
 
@@ -186,7 +185,7 @@ namespace WebApplication2
 
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=admin123;PASSWORD=Nowehaslo321;";
+                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=michal7018;PASSWORD=Michal7011;";
 
                 conn.Open();
 
@@ -246,7 +245,7 @@ namespace WebApplication2
 
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=admin123;PASSWORD=Nowehaslo321;";
+                conn.ConnectionString = "SERVER=ps2dbserwer.database.windows.net;DATABASE=sqldb;USER ID=michal7018;PASSWORD=Michal7011;";
 
                 conn.Open();
 
